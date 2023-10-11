@@ -1,4 +1,5 @@
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -16,6 +17,7 @@ namespace API.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetStudents()
         {
@@ -25,6 +27,7 @@ namespace API.Controllers
             return Ok(students);
         }
 
+        [Authorize]
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetStudent(Guid id)
@@ -35,6 +38,7 @@ namespace API.Controllers
             return Ok(students);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult CreateStudent(Student student)
         {
@@ -46,6 +50,7 @@ namespace API.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> UpdateStudent(Student student)
